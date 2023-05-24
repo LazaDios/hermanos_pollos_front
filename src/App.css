@@ -1,8 +1,16 @@
+@font-face {
+  font-family: 'Mexcellent';
+  src: url('./fonts/Mexcellent/mexcellent_rg.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: "Mexcellent";
 }
 
 .logo {
@@ -39,4 +47,16 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1023px) {
+  .lazamania {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .mi-div {
+    width: 100% !important;
+  }
 }

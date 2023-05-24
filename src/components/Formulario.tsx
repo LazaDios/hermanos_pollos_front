@@ -16,9 +16,19 @@ function Formulario() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:3000/orders', {
+
+    const formData = new FormData(e.currentTarget)
+    
+
+    fetch('http://localhost:3001/orders', {
       method: 'POST',
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+          nombre: formData.get("nombre"),
+          cedula: formData.get("cedula"),
+          direccion: formData.get("direccion"),
+          correo_eletronico: formData.get("correo_electronico"),
+          pedido: formData.get("pedido")
+      }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -35,31 +45,32 @@ function Formulario() {
   };
 
   return (
-        <form onSubmit={handleSubmit}>
+        <form className="tracking-wide font-bold text-lg" onSubmit={handleSubmit}>
 
             <div className="mb-2">
                 <label className="label" htmlFor="nombre"> Nombre:</label>
-                <input className="input input-bordered w-full" type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} placeholder = "nombre y apellido" />
+                <input className="input  text-warning input-bordered w-full" type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} placeholder = "nombre y apellido" />
             </div>
 
             <div className="mb-2">
                 <label className="label" htmlFor="cedula">Cedula:</label>
-                <input className="input input-bordered w-full" type="number" id="cedula" name="cedula" value={formData.cedula} onChange={handleChange} placeholder = "numero de cedula:"/>
+                <input className="input text-warning input-bordered w-full" type="number" id="cedula" name="cedula" value={formData.cedula} onChange={handleChange} placeholder = "numero de cedula:"/>
             </div>
 
             <div className="mb-2">
                 <label className="label" htmlFor="direccion">Direccion: </label>
-                <textarea className="input input-bordered w-full" id="direccion" name="direccion" rows="4" value={formData.direccion} onChange={handleChange} placeholder = "Ubicacion para la entrega" ></textarea>
+                <textarea className="input text-warning input-bordered  w-full" id="direccion"  name="direccion" rows="4" value={formData.direccion} onChange={handleChange} placeholder = "Ubicacion para la entrega" ></textarea>
             </div>
 
             <div className="mb-2">
                 <label className="label" htmlFor="pedido">Pedido: </label>
-                <textarea className="input input-bordered w-full" id="pedido" name="pedido" rows="4" value={formData.pedido} onChange={handleChange} placeholder = "Que deseas LLevar?" ></textarea>
+                <textarea className="input text-warning input-bordered w-full" id="pedido" name="pedido" rows="4" value={formData.pedido} onChange={handleChange} placeholder = "Que deseas LLevar?" ></textarea>
             </div>
-
+            
             <div className="mb-2">
                 <label className="label" htmlFor="correo_electronico">Gmail:</label>
-                <input className="input input-bordered w-full" id="correo_electronico" type="email" name="correo_electronico" value={formData.correo_electronico} onChange={handleChange} placeholder = "Correo Electronico" />
+
+                <input className="input text-warning input-bordered w-full" id="correo_electronico" type="email" name="correo_electronico" value={formData.correo_electronico} onChange={handleChange} placeholder = "Correo Electronico" />
             </div>
 
             <button className="btn btn-primary w-full rounded" type="submit"> ENVIAR </button>
